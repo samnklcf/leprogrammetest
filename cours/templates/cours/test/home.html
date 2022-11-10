@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+
+        <h1>LISTE DES COURS</h1>
+
+        {% for theme in themes %}
+        
+        {% comment %} <h1>Titre: {{ chapitre.title }}</h2>
+            <h3>Description {{ chapitre.description }}</h3> {% endcomment %}
+            <h1>Theme: {{ theme.title }}</h1>
+            <h3><a href="categorie/{{ theme.categorie.nom }}"> Categorie: {{ theme.categorie }} </a></h3>
+            <h4>{{ theme.date }}</h4>
+            {% comment %} <h3><a href="{% url 'categorie' categorie.slug %}"> Categorie {{ theme.category }} </a></h3> {% endcomment %}
+            
+            <img src="{{ theme.miniature.url }} " width='300'><br>
+            <p>{{ theme.slug }}</p>
+            
+            <a href="test/{{ theme.slug }}"> Voir le programme</a>
+            
+            <hr/>
+            
+            {% endfor %}
+            
+            
+    </center>
+
+
+</body>
+</html>

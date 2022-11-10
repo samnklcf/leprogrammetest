@@ -1,0 +1,46 @@
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9000;
+    gap: 6px;
+}
+
+.lettre {
+    color: #484848;
+   font-weight: 900;
+    animation: flash 1.2s linear infinite;
+}
+
+@keyframes flash {
+    0%{
+        color: #004cffcd;
+        text-shadow: 0 0 20px #004cffcd;
+    }
+
+    90%{
+        color: #484848;
+        text-shadow: none;
+    }
+    100%{
+        color: #004cffcd;
+        text-shadow: 0 0 20px #004cffcd;
+    }
+}
+
+.fondu-out{
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+}
+
+.partie {
+    display: none !important;
+}

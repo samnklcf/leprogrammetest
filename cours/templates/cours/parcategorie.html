@@ -1,0 +1,43 @@
+{% extends 'cours/base.html' %}
+{% load static %}
+{% block content %}
+<header class="py-8 py-md-11" style="background-image: none;">
+    <div class="container text-center py-xl-2">
+        <h1 class="display-4 fw-semi-bold mb-0">Catégorie: {{ categorie.nom }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                <li class="breadcrumb-item">
+                    <a class="text-gray-800" href="{% url 'home' %}">
+                        Acceuil
+                    </a>
+                </li>
+                <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                    Nombre de theme ( {{themes.count}} )
+                </li>
+            </ol>
+        </nav>
+    </div>
+  
+    <img class="d-none img-fluid" src="...html" alt="...">
+</header>
+
+
+
+
+<div class="row row-cols-md-2 row-cols-xl-3 mb-2" style="padding: 0 25px 0 35px !important;">
+
+    {% include 'cours/galerie.html' %}
+
+    
+    
+    
+    
+</div>
+
+
+
+{% endblock content %}
+
+
+
+

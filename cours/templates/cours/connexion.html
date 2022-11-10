@@ -1,0 +1,128 @@
+{% extends 'cours/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+
+
+
+{% if request.user.profil.Etudiant.bio == "" %}
+    {% include 'cours/noprofil.html' %}
+    
+    {% else %}
+
+    {% if user.is_authenticated %}
+    <header class="py-8 py-md-11" style="background-image: none;">
+        <div class="container text-center py-xl-2">
+            <h1 class="display-4 fw-semi-bold mb-0">Déjà connecté(e)</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                    <li class="breadcrumb-item">
+                        <a class="text-gray-800" href="{% url 'home' %}">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                        <a class="text-gray-800" href="{% url 'deconnexion' %}">
+                            Déconnexion
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+      
+        <img class="d-none img-fluid" src="...html" alt="...">
+    </header>
+
+    <center style="width: 100% !important; display:flex; align-items:center; justify-content:center;">
+        <div class="sam" style="text-align: center; width: 500px; color: white !important; background: #06054d; padding: 20px; border-radius: 4px;">
+
+            <h2 style='text-align: center; color: white !important; font: 900 !important;'>Vous êtes déjà connecté(e)<br> 🤗</h2>
+            <p><a href="{% url 'home' %}"  class="btn btn-white">Retour à l'accueil</a></p>
+        </div>
+    </center>
+    {% else %}
+
+    <header class="py-8 py-md-11" style="background-image: none;">
+        <div class="container text-center py-xl-2">
+            <h1 class="display-4 fw-semi-bold mb-0">Connexion</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                    <li class="breadcrumb-item">
+                        <a class="text-gray-800" href="{% url 'home' %}">
+                            Accueil
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                        Connexion
+                    </li>
+                </ol>
+            </nav>
+        </div>
+       
+        <img class="d-none img-fluid" src="...html" alt="...">
+    </header>
+
+
+    <div class="container mb-11">
+        <div class="row gx-0">
+            <div class="col-md-7 col-xl-4 mx-auto">
+               
+                <h3 class="mb-6">Connectez-vous au programme</h3>
+
+               
+                <form class="mb-5" method="post" action="">
+                    {% csrf_token %}
+                    {% if error %}
+                    <b>Veillez entrez des valeurs réelles</b>
+                    {% endif %}
+                    
+                    <div class="form-group mb-5">
+                        <label for="modalSigninEmail1">
+                            Nom d'utilisateu
+                        </label>
+                        
+                        {% render_field form.username class="form-control" id="modalSigninEmail1" placeholder="Ex: Samnklcf" %}
+                    </div>
+
+                   
+                    <div class="form-group mb-5">
+                        <label for="modalSigninPassword1">
+                            Mot de passe
+                        </label>
+                        
+                        {% render_field form.password class="form-control" id="modalSigninPassword1" placeholder="Mot de passe" %}
+                    </div>
+
+                    <div class="d-flex align-items-center mb-5 font-size-sm">
+                        
+
+                        <div class="ms-auto">
+                            <a class="text-gray-800" href="recover.html">Mot de passe</a>
+                        </div>
+                    </div>
+
+                   
+                    <button class="btn btn-block btn-primary" type="submit">
+                        S'enregistrer
+                    </button>
+                </form>
+
+                
+                <p class="mb-0 font-size-sm text-center">
+                    Vous n'avez pas de compte? <a class="text-underline" href="{% url 'register' %}">Créer un compte</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endif %}
+
+
+
+{% endblock content %}
+
+

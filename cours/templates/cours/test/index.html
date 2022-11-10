@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Playlist UI Design Like Udemy | SkillShare</title>
+    <link rel="stylesheet" href="{% static 'cours/css/style.css' %}">
+</head>
+
+<body>
+    <center>
+
+      
+        
+        
+          <h3>lesson {{ lesson.title }}</h3>
+          <video src="{{ lesson.video.url }}"></video>
+          <h4>{{ lesson.date }}</h4>
+          
+          <h1>Contenue:</h1>
+              {{ lesson.description | safe }}
+         
+         
+          
+          
+          
+          <a href="../lesson/{{ lesson.slug }}"> Accéder au cours</a>
+          <hr/>
+          
+    </center>
+   
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+
+    
+        <h1>Les lessons de: {{ theme }} ? {{ theme.date }}</h1>
+        <p>{{ lesson.count }}</p>
+        <HR />
+        {{ lessons }} <br/> <br/>
+        Avant: {{ lessons.has_previous }} <br/> <br/>
+        Après : {{ lessons.has_next }} <br/> <br/>
+        Current page : {{ lessons.number }}<br/> <br/>
+        Nombre de page : {{ lessons.paginator.num_pages }}
+        <hr/>
+        <br/> <br/>
+        {% if lessons.has_previous %}
+         <a href="?cours=1">&laquo First</a>
+         <a href="?cours={{ lessons.previous_page_number }}">Previous</a>
+         {% endif %} 
+
+         Page {{ lessons.number }} / {{ lessons.paginator.num_pages }}
+
+         {% if lessons.has_next %}
+         <a href="?cours={{ lessons.next_page_number }}"> next </a>
+         <a href="?cours={{ lessons.paginator.num_pages }}">Last &raquo</a>
+         {% endif %} <br/>
+        
+
+        <hr/>
+
+         
+
+         
+
+
+
+
+        <ol>
+        {% for lessons in lessons %}
+        
+            <li>
+                <h1>Titre: {{ lessons }} </h1>
+               
+                <h2>Ajouté le: {{ lessons.date }} </h2>
+
+                
+                <video src='{{ lessons.video.url }}' controls width="300 "><video>
+               
+
+            </li>
+            <hr/>
+            
+        
+       
+        
+        {% endfor %}
+        
+
+        <ol>
+    </center>
+</body>
+</html>

@@ -1,0 +1,131 @@
+{% extends 'cours/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if request.user.profil.Etudiant.bio == "" %}
+    {% include 'cours/noprofil.html' %}
+    
+    {% else %}
+
+    {% if user.is_authenticated %}
+        <header class="py-8 py-md-11" style="background-image: none;">
+            <div class="container text-center py-xl-2">
+                <h1 class="display-4 fw-semi-bold mb-0">Déjà connecté(e)</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                        <li class="breadcrumb-item">
+                            <a class="text-gray-800" href="{% url 'home' %}">
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                            <a class="text-gray-800" href="{% url 'deconnexion' %}">
+                                Déconnexion
+                            </a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+       
+            <img class="d-none img-fluid" src="...html" alt="...">
+        </header>
+
+        <center style="width: 100% !important; display:flex; align-items:center; justify-content:center;">
+            <div class="sam" style="text-align: center; width: 500px; color: white !important; background: #06054d; padding: 20px; border-radius: 4px;">
+
+                <h2 style='text-align: center; color: white !important; font: 900 !important;'>Vous êtes déjà connecté(e)<br> 🤗</h2>
+                <p><a href="{% url 'home' %}"  class="btn btn-white">Retour à l'accueil</a></p>
+            </div>
+        </center>
+        {% else %}
+
+
+        <header class="py-8 py-md-11" style="background-image: none;">
+            <div class="container text-center py-xl-2">
+                <h1 class="display-4 fw-semi-bold mb-0">Créer un compte</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                        <li class="breadcrumb-item">
+                            <a class="text-gray-800" href="{% url 'home' %}">
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                            Créer un compte
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <img class="d-none img-fluid" src="...html" alt="...">
+        </header>
+
+
+
+        <div class="container mb-11">
+            <div class="row gx-0">
+                <div class="col-md-7 col-xl-4 mx-auto">
+            
+                    <h3 class="mb-6">Créer un compte</h3>
+
+                    <style>
+                        .samnk p {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        .samnk input {
+                            display: block;
+                            width: 100%;
+                            padding: 1rem 1.25rem;
+                            font-size: 1rem;
+                            font-weight: 400;
+                            line-height: 1.64;
+                            color: #77838f;
+                            background-color: #fff;
+                            background-clip: padding-box;
+                            border: 1px solid #e7e7ec;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            border-radius: 0.25rem;
+                            box-shadow: inset 0 1px 2px rgb(22 28 45 / 8%);
+                            -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                        
+                        }
+                        .samnk button {
+                            color: #fff;
+                            background-color: #090761;
+                            border-color: #090761;
+                            box-shadow: inset 0 1px 0 rgb(255 255 255 / 15%), 0 1px 1px rgb(22 28 45 / 8%);
+                        }
+
+                        .samnk span, ul {
+                            font-size: 13px;
+                            color: #090761;
+                        }
+                    </style>
+                    
+                    <form method="post" action="" class="mb-5 samnk">
+                        {% csrf_token %}
+
+                        {{form.as_p}}
+
+                        
+                        <button type="submit" class="btn btn-block">Creer un compte</button>
+                    </form>
+
+                    <p class="mb-0 font-size-sm text-center">
+                        Avez vous déjà un compte? <a class="text-underline" href="{% url 'login' %}">Se connecter</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+{% endif %}
+
+
+ 
+{% endblock content %}

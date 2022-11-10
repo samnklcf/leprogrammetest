@@ -1,0 +1,179 @@
+{% extends 'cours/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+
+{% if request.user.profil.Etudiant.bio == "" %}
+{% include 'cours/noprofil.html' %}
+{% else %}
+
+<div class="bg-dark pb-9 pt-8 pt-md-11">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <h1 class="me-8 text-white">
+                    {{ theme.title }}
+                </h1>
+                <p class="me-xl-8 mb-5 text-white">{{ theme.mini_description }}</p>
+
+                <a href="#" class="badge badge-lg badge-rounded-circle badge-secondary font-size-base badge-float badge-float-inside top-0 text-white">
+                    <i class="far fa-heart"></i>
+                </a>
+
+               
+                <div class="d-md-flex align-items-center mb-6">
+                    <div class="border rounded-circle d-inline-block mb-4 mb-md-0 bg-white">
+                        <div class="p-2">
+                            <a href="{% url 'showprofile' theme.auteur.username %}">
+                                <img src="{{ theme.auteur.profil.image.url }}" alt="..." class="rounded-circle" width="68" height="68">
+
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ms-md-6">
+                        <div class="mb-2 d-flex align-items-center">
+                            <h6 class="mb-0 text-white font-size-sm">Crée par: </h6>
+                            <a href="{% url 'showprofile' theme.auteur.username %}" class="font-size-sm text-white ms-3">{{ theme.auteur }}</a>
+                        </div>
+
+                        <div class="mb-2 d-flex align-items-center">
+                            <h6 class="mb-0 text-white font-size-sm">Categorie: </h6>
+                            <a href="{% url 'categorie' theme.categorie.slug %}" class="font-size-sm text-white ms-3">{{ theme.categorie }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
+                        <div class="text-white d-flex icon-uxs">
+                         
+                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.3164 4.20996C13.985 4.37028 13.8464 4.76904 14.0067 5.10026C14.4447 6.00505 14.6667 6.98031 14.6667 8C14.6667 11.6759 11.6759 14.6667 8 14.6667C4.32406 14.6667 1.33333 11.6759 1.33333 8C1.33333 4.32406 4.32406 1.33333 8 1.33333C9.52328 1.33333 10.9543 1.83073 12.1387 2.77165C12.4259 3.00098 12.846 2.95296 13.0754 2.66471C13.3047 2.37663 13.2567 1.95703 12.9683 1.72803C11.5661 0.613607 9.8016 0 8 0C3.58903 0 0 3.58903 0 8C0 12.411 3.58903 16 8 16C12.411 16 16 12.411 16 8C16 6.77767 15.7331 5.60628 15.2067 4.51969C15.0467 4.18766 14.6466 4.04932 14.3164 4.20996Z" fill="currentColor"/>
+                                <path d="M7.99967 2.66663C7.63167 2.66663 7.33301 2.96529 7.33301 3.33329V7.99996C7.33301 8.36796 7.63167 8.66663 7.99967 8.66663H11.333C11.701 8.66663 11.9997 8.36796 11.9997 7.99996C11.9997 7.63196 11.701 7.33329 11.333 7.33329H8.66634V3.33329C8.66634 2.96529 8.36768 2.66663 7.99967 2.66663Z" fill="currentColor"/>
+                            </svg>
+
+                        </div>
+                        <h6 class="mb-0 ms-3 me-auto text-white">Durée: </h6>
+                        <span>{{ theme.timing }} h</span>
+                    </li>
+
+                    <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
+                        <div class="text-white d-flex icon-uxs">
+                        
+                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.4286 7.42841H6.20457C5.89469 6.21086 4.65646 5.47506 3.43888 5.78494C2.63143 5.99045 2.00093 6.62095 1.79541 7.42841H0.571439C0.255837 7.42841 0 7.68424 0 7.99985C0 8.31545 0.255837 8.57125 0.571439 8.57125H1.79545C2.10532 9.7888 3.34356 10.5246 4.56114 10.2147C5.36859 10.0092 5.99909 9.37871 6.20461 8.57125H15.4286C15.7442 8.57125 16 8.31542 16 7.99981C16 7.68421 15.7442 7.42841 15.4286 7.42841ZM4.00001 9.14269C3.36884 9.14269 2.85716 8.63102 2.85716 7.99985C2.85716 7.36868 3.36884 6.857 4.00001 6.857C4.63118 6.857 5.14285 7.36868 5.14285 7.99985C5.14285 8.63102 4.63118 9.14269 4.00001 9.14269Z" fill="currentColor"/>
+                                <path d="M15.4286 1.71405H13.6331C13.3233 0.496508 12.085 -0.239295 10.8675 0.0705817C10.06 0.276095 9.4295 0.906597 9.22399 1.71405H0.571439C0.255837 1.71405 0 1.96989 0 2.28549C0 2.60109 0.255837 2.85693 0.571439 2.85693H9.22399C9.53387 4.07447 10.7721 4.81028 11.9897 4.5004C12.7971 4.29489 13.4276 3.66438 13.6331 2.85693H15.4286C15.7442 2.85693 16 2.60109 16 2.28549C16 1.96989 15.7442 1.71405 15.4286 1.71405ZM11.4286 3.42834C10.7974 3.42834 10.2857 2.91666 10.2857 2.28549C10.2857 1.65432 10.7974 1.14265 11.4286 1.14265C12.0598 1.14265 12.5714 1.65432 12.5714 2.28549C12.5714 2.91666 12.0598 3.42834 11.4286 3.42834Z" fill="currentColor"/>
+                                <path d="M15.4286 13.1428H12.4903C12.1804 11.9252 10.9422 11.1894 9.72458 11.4993C8.91713 11.7048 8.28662 12.3353 8.08111 13.1428H0.571439C0.255837 13.1428 0 13.3986 0 13.7142C0 14.0297 0.255837 14.2856 0.571439 14.2856H8.08114C8.39102 15.5032 9.62926 16.239 10.8468 15.9291C11.6543 15.7236 12.2848 15.0931 12.4903 14.2856H15.4286C15.7442 14.2856 16 14.0298 16 13.7142C16 13.3986 15.7442 13.1428 15.4286 13.1428ZM10.2857 14.8571C9.65454 14.8571 9.14286 14.3454 9.14286 13.7142C9.14286 13.083 9.65454 12.5714 10.2857 12.5714C10.9169 12.5714 11.4286 13.083 11.4286 13.7142C11.4286 14.3454 10.9169 14.8571 10.2857 14.8571Z" fill="currentColor"/>
+                            </svg>
+
+                        </div>
+                        <h6 class="mb-0 ms-3 me-auto text-white">Niveau: </h6>
+                        <span>{{theme.niveau }}</span>
+                        
+                    </li>
+                    <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
+                        <div class="text-white d-flex icon-uxs">
+                    
+                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.7188 9.8575V3.1875C15.7188 2.41209 15.0879 1.78125 14.3125 1.78125H12.4688V1.25C12.4688 0.991125 12.2589 0.78125 12 0.78125C11.7411 0.78125 11.5312 0.991125 11.5312 1.25V1.78125H8.46875V1.25C8.46875 0.991125 8.25887 0.78125 8 0.78125C7.74113 0.78125 7.53125 0.991125 7.53125 1.25V1.78125H4.46875V1.25C4.46875 0.991125 4.25887 0.78125 4 0.78125C3.74113 0.78125 3.53125 0.991125 3.53125 1.25V1.78125H1.40625C0.630844 1.78125 0 2.41209 0 3.1875V11.8125C0 12.5879 0.630844 13.2188 1.40625 13.2188H8.68531C9.35484 14.4112 10.6317 15.2188 12.0938 15.2188C14.2477 15.2188 16 13.4664 16 11.3125C16 10.7985 15.9 10.3074 15.7188 9.8575ZM12.5625 8.38087C13.8248 8.58197 14.8243 9.58144 15.0254 10.8438H12.5625V8.38087ZM1.40625 12.2812C1.14778 12.2812 0.9375 12.071 0.9375 11.8125V3.1875C0.9375 2.92903 1.14778 2.71875 1.40625 2.71875H3.53125V3.28125C3.53125 3.54012 3.74113 3.75 4 3.75C4.25887 3.75 4.46875 3.54012 4.46875 3.28125V2.71875H7.53125V3.28125C7.53125 3.54012 7.74113 3.75 8 3.75C8.25887 3.75 8.46875 3.54012 8.46875 3.28125V2.71875H11.5312V3.28125C11.5312 3.54012 11.7411 3.75 12 3.75C12.2589 3.75 12.4688 3.54012 12.4688 3.28125V2.71875H14.3125C14.571 2.71875 14.7812 2.92903 14.7812 3.1875V8.48034C14.0805 7.81506 13.134 7.40625 12.0938 7.40625C9.93984 7.40625 8.1875 9.15859 8.1875 11.3125C8.1875 11.6468 8.22978 11.9713 8.30916 12.2812H1.40625ZM12.0938 14.2812C10.4568 14.2812 9.125 12.9495 9.125 11.3125C9.125 9.83503 10.21 8.60631 11.625 8.38087V11.3125C11.625 11.5714 11.8349 11.7812 12.0938 11.7812H15.0254C14.7999 13.1962 13.5712 14.2812 12.0938 14.2812Z" fill="currentColor"/>
+                                <path d="M3.25 5.78125H2.5C2.24112 5.78125 2.03125 5.99112 2.03125 6.25C2.03125 6.50888 2.24112 6.71875 2.5 6.71875H3.25C3.50888 6.71875 3.71875 6.50888 3.71875 6.25C3.71875 5.99112 3.50888 5.78125 3.25 5.78125Z" fill="currentColor"/>
+                                <path d="M6 5.78125H5.25C4.99112 5.78125 4.78125 5.99112 4.78125 6.25C4.78125 6.50888 4.99112 6.71875 5.25 6.71875H6C6.25888 6.71875 6.46875 6.50888 6.46875 6.25C6.46875 5.99112 6.25888 5.78125 6 5.78125Z" fill="currentColor"/>
+                                <path d="M6 7.78125H5.25C4.99112 7.78125 4.78125 7.99112 4.78125 8.25C4.78125 8.50888 4.99112 8.71875 5.25 8.71875H6C6.25888 8.71875 6.46875 8.50888 6.46875 8.25C6.46875 7.99112 6.25888 7.78125 6 7.78125Z" fill="currentColor"/>
+                                <path d="M3.25 7.78125H2.5C2.24112 7.78125 2.03125 7.99112 2.03125 8.25C2.03125 8.50888 2.24112 8.71875 2.5 8.71875H3.25C3.50888 8.71875 3.71875 8.50888 3.71875 8.25C3.71875 7.99112 3.50888 7.78125 3.25 7.78125Z" fill="currentColor"/>
+                                <path d="M3.25 9.78125H2.5C2.24112 9.78125 2.03125 9.99112 2.03125 10.25C2.03125 10.5089 2.24112 10.7188 2.5 10.7188H3.25C3.50888 10.7188 3.71875 10.5089 3.71875 10.25C3.71875 9.99112 3.50888 9.78125 3.25 9.78125Z" fill="currentColor"/>
+                                <path d="M6 9.78125H5.25C4.99112 9.78125 4.78125 9.99112 4.78125 10.25C4.78125 10.5089 4.99112 10.7188 5.25 10.7188H6C6.25888 10.7188 6.46875 10.5089 6.46875 10.25C6.46875 9.99112 6.25888 9.78125 6 9.78125Z" fill="currentColor"/>
+                            </svg>
+
+                        </div>
+                        <h6 class="mb-0 ms-3 me-auto text-white">Publié le:</h6>
+                        <span>{{ theme.date | date }}</span>
+                    </li>
+                    
+                </ul>
+            </div>
+
+            <div class="col-lg-6">
+                
+                <img  src="{{ theme.miniature.url }}" class="z img-fluid"   width="" />
+                
+
+                <div class="d-flex align-items-center mb-2">
+                    <ins class="h2 mb-0 text-white">fcfa {{ theme.prix }}</ins>
+                    
+                </div>
+
+                
+
+                <div class="d-md-flex">
+                    {% if theme.auteur.username == request.user.username %}
+                    <a href="{% url 'maj' theme.slug %}"><button class="btn btn-blue btn-wide mb-4 mb-md-0 me-md-3 flex-grow-1" type="button" name="button">Modifier</button></a>
+                    <a href="{% url 'supp' theme.slug %}"><button class="btn btn-warning btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" type="button" name="button">Supprimer</button></a>
+                    
+                    {% else %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="theme_id" value="{{theme.title}}">
+                        <input type="hidden" name="identifiant" value="{{theme.identifiant}}">
+                        <input type="hidden" name="prix" value="{{theme.prix}}">
+                        <a href="{% url 'lessonvideo' theme.identifiant %}" type="submit"><button class="btn btn-blue btn-wide mb-4 mb-md-0 me-md-3 flex-grow-1" type="submit" name="button">Suivre</button></a>
+
+                        
+                    </form>
+                    
+                    
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row pt-8">
+        <div class="col-lg-10 col-xl-8 mx-lg-auto">
+            <div class="mb-8">
+                <h3 class="">Description</h3>
+                <p>{{ theme.description | safe }}</p>
+                
+            </div>
+
+            
+
+            <div class="mb-8">
+                <h3 class="mb-6">A propos de l'auteur</h3>
+
+                <div class="d-flex align-items-center mb-6">
+                    <div class="d-inline-block rounded-circle border me-6 p-2">
+                        <div class="avatar avatar-size-120">
+                            <img src="{{ theme.auteur.profil.image.url }}" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="mb-0">{{theme.auteur}}</h4>
+                        <span>Créateur du cours</span>
+                    </div>
+                </div>
+
+               
+
+                
+            </div>
+
+            
+        </div>
+    </div>
+
+
+    
+
+    
+</div>
+
+{% endif %}
+
+
+
+{% endblock content %}

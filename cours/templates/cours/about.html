@@ -1,0 +1,102 @@
+{% extends 'cours/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+
+<br>
+<br>
+<br>
+
+<div class="container pb-4 pb-xl-7">
+    <div class="text-center mb-md-6 mb-4">
+        <h1 class="mb-3">Qui sommes nous ?</h1>
+        <p class="font-size-lg mb-5 text-capitalize">Découvrez qui nous sommes.</p>
+
+        <p class="w-xl-80 mx-auto line-height-md">
+            Le programme est une plateforme de e-learning développée par Samuel EYEBE NKENKE. Le but de cette plateforme est pouvoir est de donner un accès à la connaissance.
+        </p>
+    </div>
+    <br>
+
+    <center>
+        <div class="container">
+
+            <h1>Nos formateurs</h1>
+        </div>
+    </center>
+    <br>
+    <div class="container pb-4 pb-xl-7">
+        <div class="row row-cols-md-3 row-cols-lg-4 mb-6 mb-xl-3">
+            {% for persos in perso %}
+            {% if persos.user.is_staff %}
+        
+
+            
+            <div class="col-md pb-4 pb-md-7">
+                <div class="card border shadow p-2 lift">
+                    
+                    <div class="card-zoom position-relative">
+                        
+
+                        <a href="{% url 'showprofile' persos.user.username %}" class="card-img sk-thumbnail img-ratio-4 card-hover-overlay d-block"><img class="rounded shadow-light-lg img-fluid" src="{{ persos.image.url }}" alt="..."></a>
+                    </div>
+
+                    
+                    <div class="card-footer px-3 pt-4 pb-1">
+                        <a href="{% url 'showprofile' persos.user.username %}" class="d-block"><h5 class="mb-0">{{persos.user.username}}</h5></a>
+                        <span class="font-size-d-sm">{{persos.profession}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+            
+            
+        </div>
+
+        
+        
+    </div>
+
+    <ul>
+        
+        
+        
+            
+        
+        
+        </ul>
+
+<section class="py-6 py-md-11 border-top" data-jarallax data-speed=".8" style="background-image: url({% static 'cours/assets/img/illustrations/illustration-1.jpg'%})">
+    <div class="container text-center py-xl-4">
+        <div class="row">
+            <div class="col-xl-7 mx-auto">
+                <h1 class="text-capitalize">Abonnez-vous à notre newletter</h1>
+                <p class="text-capitalize font-size-lg mb-md-6 mb-4">Restez conecté(e)</p>
+                <div class="mx-md-8">
+                    {% if test %}
+                    <p>Merci de vous être abonné(e)</p>
+                    {% endif %}
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            
+                            {% render_field form.email class="form-control" placeholder="Entrer votre email" aria-label="Votre email" aria-describedby="button-addon2" %}
+                           
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-sm-wide" type="submit" id="button-addon2">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+
+
+{% endblock content %}

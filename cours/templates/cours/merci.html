@@ -1,0 +1,18 @@
+{% extends 'cours/base.html' %}
+{% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<center style="width: 100% !important; display:flex; align-items:center; justify-content:center;">
+    <div class="sam" style="text-align: center; width: 500px; color: white !important; background: #06054d; padding: 20px; border-radius: 4px;">
+
+        <h3 style='text-align: center; color: white !important; font: 900 !important;'>Salut {{request.user.username}}, merci pour votre demande, nous vous rappellerons au plus vite.<br> 🤗</h3>
+        <p><a href="{% url 'home' %}"  class="btn btn-white">Retour à l'accueil</a></p>
+    </div>
+</center>
+
+
+{% endblock content %}

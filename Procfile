@@ -1,0 +1,1 @@
+web: gunicorn leprogrammehero.wsgi --log-file -

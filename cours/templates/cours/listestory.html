@@ -1,0 +1,113 @@
+{% extends 'cours/base.html' %}
+{% block content %}
+<header class="py-8 py-md-10" style="background-image: none;">
+    <div class="container text-center py-xl-2">
+        <h1 class="display-4 fw-semi-bold mb-0">Vos cours</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                <li class="breadcrumb-item">
+                    <a class="text-gray-800" href="#">
+                        Accueil
+                    </a>
+                </li>
+                <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                Vos cours
+                </li>
+            </ol>
+        </nav>
+    </div>
+   
+    <img class="d-none img-fluid" src="...html" alt="...">
+</header>
+
+<div class="container">
+    <a href="{% url 'deconnexion' %}" class="btn btn-warning" style="margin: 20px 0;">Se deconnecter</a>
+</div>
+    <div class="container pb-6 pb-xl-10">
+        
+        <div class="row">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main ">
+                    <div class="page type-page status-publish hentry">
+                       
+                        <div class="entry-content">
+                            <div class="woocommerce">
+                                
+                                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                                        <thead>
+                                            <tr>
+                                                <th  class="product-name">Titre</th>
+                                                <th class="product-price">Identifiant</th>
+                                                
+                                                <th class="product-quantity">Prix</th>
+                                                <th class="product-quantity"></th>
+                                                
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            
+
+                                            
+                                            {% for story in stories %}
+                                            <tr class="woocommerce-cart-form__cart-item cart_item">
+                                                <td  class="product-name" data-title="Product">
+                                                    <div class="d-flex align-items-center">
+                                                        
+                                                        <div class="ms-6">
+                                                            <a href="{% url 'lessonvideo' story.identifiant %}">
+                                                                <p>{{ story.theme_id }}</p>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                                <td class="product-price" data-title="Price">
+                                                    <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">{{story.identifiant}}</span></span>
+                                                </td>
+
+                                                <td class="product-quantity" data-title="Quantity">
+                                                    <!-- Quantity -->
+                                                    <div class="rounded d-flex align-items-center">
+                                                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">{{story.prix}} fcfa</span></span>
+
+                                                       
+                                                    </div>
+                                                 
+                                                </td>
+
+                                                <td class="product-quantity" data-title="Quantity">
+                                                    <!-- Quantity -->
+                                                    <div class="rounded d-flex align-items-center">
+                                                        <a href="{% url 'lessonvideo' story.identifiant %}">
+                                                            Continuer
+                                                        </a>
+
+                                                       
+                                                    </div>
+                                                 
+                                                </td>
+
+                                                
+                                            </tr>
+                                            
+                                            {% endfor %}
+
+                                            
+                                        </tbody>
+                                    </table>
+                                
+                            </div>
+                        </div>
+                      
+                    </div>
+                </main>
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+{% endblock content %}
